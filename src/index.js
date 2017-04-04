@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-var library = ['React', 'Angular', 'Vue', 'Ember', 'Leaflet', 'Socket', 'Inferno', 'Mo', 'Vivus', 'Redux', 'Lodash', 'Underscore', 'Jquery'];
+var library = [
+  'React', 'Angular', 'Vue', 'Ember', 'Leaflet', 'Socket',
+  'Inferno', 'Mo', 'Vivus', 'Redux', 'Lodash', 'Underscore',
+  'Jquery', 'Knockout', 'Mustache', 'Rollup', 'Three', 'D3',
+  'Preact', 'Chart', 'Reveal', 'Backbone', 'Gulp', 'Phantom',
+  'Cheerio', 'Casper', 'Jquery', 'Rx', 'Granim', 'Skate'
+];
 
-String.prototype.capitalizeFirstLetter = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+var capital = function(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-class Main extends React.Component {
+class Main extends Component {
  constructor(props) {
    super(props);
    this.onChange = this.onChange.bind(this);
@@ -21,7 +27,7 @@ onChange(e) {
 handleSubmit(e) {
    e.preventDefault();
    let newItem = this.state.items;
-   let text = this.state.text.capitalizeFirstLetter();
+   let text = capital(this.state.text)
    newItem.splice(0, 1, text);
    let newText = '';
    this.setState({items: newItem, text: newText});
@@ -42,7 +48,7 @@ handleSubmit(e) {
          placeholder="Any word..." />
       </form>
       {/* this will compare the input that I submitted and compare with the library. It will show result if the is a library or else it will show an error */}
-      {arrayIncludes(library, this.state.items) && <Result correct={this.state.items}/> }
+      {arrayIncludes(library, this.state.items) && <Result correct={this.state.items} /> }
       {!arrayIncludes(library, this.state.items) && this.state.items.length > 0 && <Error /> }
       </div>
      </div>
@@ -59,7 +65,7 @@ const Result = (props)  => {
 }
 
 const Error = ()  => {
-    return <p>There is no such library. What are you witing for ???? Pick this word and start writing your own library<i className="em em-pencil"></i><i className="em em-pencil"></i></p>;
+    return <p>There is no such library. What are you waiting for ???? Pick this word and start writing your own library<i className="em em-pencil"></i><i className="em em-pencil"></i></p>;
 }
 
 const Instruction = () => {
