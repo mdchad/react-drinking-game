@@ -14,21 +14,20 @@ var library = [
 class Main extends Component {
     constructor(props) {
         super(props);
-        this.onChange = this.onChange.bind(this); /* the same as this.onChange.bind(this) */
-        this.handleSubmit = this.handleSubmit.bind(this);  /* the same as this.handleSubmit.bind(this) */
+        // this.onChange = this.onChange.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
+        /* change to arrow function below */
         this.state = {
             items: [],
             text: ''
         };
     }
 
-
-    onChange(e) {
+    onChange = (e) => {
         this.setState({text: e.target.value});
     }
 
-
-    handleSubmit(e) {
+    handleSubmit = (e) => {
        e.preventDefault();
        let newItem = this.state.items;
        let text = Utils.capital(this.state.text)
@@ -77,11 +76,17 @@ const Result = (props)  => {
 }
 
 const Error = ()  => {
-    return <p>There is no such library. What are you waiting for ???? Pick this word and start writing your own library<i className="em em-pencil"></i><i className="em em-pencil"></i></p>;
+    return (
+        <p>There is no such library. What are you waiting for ???? Pick this word and start writing your own library
+            <i className="em em-pencil"></i><i className="em em-pencil"></i>
+        </p>
+    );
 }
 
 const Instruction = () => {
-    return <p>Pick any word and enter it. If there is a javascript library that existed, drink</p>
+    return (
+        <p>Pick any word and enter it. If there is a javascript library that existed, drink</p>
+    )
 }
 
 ReactDOM.render(<Main />, document.getElementById('app'));
