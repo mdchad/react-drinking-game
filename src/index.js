@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Utils from './utils'
 
-var library = [
+const library = [
       'React', 'Angular', 'Vue', 'Ember', 'Leaflet', 'Socket',
       'Inferno', 'Mo', 'Vivus', 'Redux', 'Lodash', 'Underscore',
       'Jquery', 'Knockout', 'Mustache', 'Rollup', 'Three', 'D3',
@@ -16,28 +16,29 @@ class Main extends Component {
         super(props);
         // this.onChange = this.onChange.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this);
+
         /* change to arrow function below */
         this.state = {
             items: [],
             text: ''
         };
-    }
+    };
 
     onChange = (e) => {
         this.setState({text: e.target.value});
-    }
+    };
 
     handleSubmit = (e) => {
        e.preventDefault();
        let newItem = this.state.items;
-       let text = Utils.capital(this.state.text)
+       let text = Utils.capital(this.state.text);
        newItem.splice(0, 1, text);
        let newText = '';
        this.setState({
            items: newItem,
            text: newText
            });
-    }
+    };
 
     render() {
         return (
@@ -72,21 +73,21 @@ const Result = (props)  => {
             <p> Drink! Drink ! Drink! <i className="em em-beers"></i><i className="em em-beers"></i>
             </p>
         </div>
-    );
-}
+    )
+};
 
 const Error = ()  => {
     return (
         <p>There is no such library. What are you waiting for ???? Pick this word and start writing your own library
             <i className="em em-pencil"></i><i className="em em-pencil"></i>
         </p>
-    );
-}
+    )
+};
 
 const Instruction = () => {
     return (
         <p>Pick any word and enter it. If there is a javascript library that existed, drink</p>
     )
-}
+};
 
 ReactDOM.render(<Main />, document.getElementById('app'));
