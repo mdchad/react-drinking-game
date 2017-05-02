@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import './index.css';
 import Utils from './utils'
 
@@ -32,8 +32,9 @@ class Main extends Component {
        e.preventDefault();
        let newItem = this.state.items;
        let text = Utils.capital(this.state.text);
-       newItem.splice(0, 1, text);
        let newText = '';
+
+       newItem.splice(0, 1, text);
        this.setState({
            items: newItem,
            text: newText
@@ -90,4 +91,4 @@ const Instruction = () => {
     )
 };
 
-ReactDOM.render(<Main />, document.getElementById('app'));
+render(<Main />, document.getElementById('app'));
