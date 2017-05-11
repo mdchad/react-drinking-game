@@ -56,7 +56,7 @@ class Main extends Component {
                             value={this.state.text}
                             placeholder="Any word..." />
                     </form>
-                    {/* this will compare the input that I submitted and compare with the library.
+                    {/* this will compare the input that were submitted and compare with the library.
                      It will show result if the is a library or else it will show an error */}
                     {Utils.arrayIncludes(library, this.state.items) && <Result correct={this.state.items} /> }
                     {!Utils.arrayIncludes(library, this.state.items) && this.state.items.length > 0 && <Error /> }
@@ -66,11 +66,11 @@ class Main extends Component {
     }
 }
 
-const Result = (props)  => {
+const Result = ({correct})  => {
     return (
         <div>
             <p>There is a library called</p>
-            <h3> {props.correct + '.js'}</h3>
+            <h3> {correct + '.js'}</h3>
             <p> Drink! Drink ! Drink! <i className="em em-beers"></i><i className="em em-beers"></i>
             </p>
         </div>
