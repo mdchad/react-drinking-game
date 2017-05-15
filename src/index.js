@@ -30,18 +30,19 @@ class Main extends Component {
 
     handleSubmit = (e) => {
        e.preventDefault();
-       let newItem = this.state.items;
+       let { items } = this.state;
        let text = Utils.capital(this.state.text);
        let newText = '';
 
-       newItem.splice(0, 1, text);
+       items.splice(0, 1, text);
        this.setState({
-           items: newItem,
+           items,
            text: newText
            });
     };
 
     render() {
+      const { items, text } = this.state;
         return (
             <div className="container">
                 <div className="inside-box">
@@ -53,13 +54,13 @@ class Main extends Component {
                         <input
                             type="text"
                             onChange={this.onChange}
-                            value={this.state.text}
+                            value={text}
                             placeholder="Any word..." />
                     </form>
                     {/* this will compare the input that were submitted and compare with the library.
                      It will show result if the is a library or else it will show an error */}
-                    {Utils.arrayIncludes(library, this.state.items) && <Result correct={this.state.items} /> }
-                    {!Utils.arrayIncludes(library, this.state.items) && this.state.items.length > 0 && <Error /> }
+                    {Utils.arrayIncludes(library, items) && <Result correct={items} /> }
+                    {!Utils.arrayIncludes(library, items) && items.length > 0 && <Error /> }
                 </div>
             </div>
         )
